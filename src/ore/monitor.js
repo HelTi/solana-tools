@@ -58,7 +58,7 @@ function checkTransactions() {
     sendMail('开始监控地址:'+ address, 'ore 监控提醒')
     checkSingleAddressTransaction(address)
     // 多久检查一次
-    setInterval(()=>checkSingleAddressTransaction(address), 2 * 60 * 1000);
+    setInterval(()=>checkSingleAddressTransaction(address), 10 * 60 * 1000);
   })
 }
 
