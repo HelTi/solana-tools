@@ -1,8 +1,12 @@
 
 const solanaWeb3 = require('@solana/web3.js');
 const dotenv = require('dotenv');
+const chalk = require('chalk');
 const { sendMail } = require('./send-email');
 const { solanaAddresses } = require('../../address');
+
+
+
 
 // 加载.env文件中的配置（如果存在）
 dotenv.config();
@@ -35,26 +39,26 @@ async function checkSingleAddressTransaction(addressToCheck=''){
     // 打印最近的一条交易记录信息
     if (confirmedSignatures.length > 0) {
       const latestTransaction = confirmedSignatures[0];
-      console.log(`Solana地址：${addressToCheck} 最近的一条交易信息:\n签名: ${latestTransaction.signature}\n区块时间: ${new Date(latestTransaction.blockTime * 1000).toLocaleString()}`);
+      console.log(`Solana地址：${chalk.blue(addressToCheck)} 最近的一条交易信息:\n签名: ${latestTransaction.signature}\n区块时间: ${new Date(latestTransaction.blockTime * 1000).toLocaleString()}`);
     }
 
 
     // 判断是否有交易
     if (recentTransactions.length === 0) {
-      const errMasg=`警告: Solana地址:${addressToCheck} 最近两分钟内没有交易记录!`
+      const errMasg=`警告: Solana地址:${chalk.red(addressToCheck)} 最近两分钟内没有交易记录!`
       console.warn(errMasg);
       sendMail(errMasg)
     } else {
-      console.log(`Solana地址：${addressToCheck} 最近两分钟内有交易记录:`, recentTransactions.length);
+      console.log(`Solana地址：${chalk.blue(addressToCheck)} 最近两分钟内有交易记录:`, recentTransactions.length);
     }
   } catch (error) {
-    console.error(`获取Solana地址：${addressToCheck} 交易记录时出错:`, error);
+    console.error(`获取Solana地址：${chalk.red(addressToCheck)} 交易记录时出错:`, error);
   }
 }
 
 function checkTransactions() {
   addressToCheckArr.forEach(address=>{
-    console.log('开始监控地址:', address);
+    console.log('开始监控地址:', chalk.blue(address));
     sendMail('开始监控地址:'+ address, 'ore 监控提醒')
     checkSingleAddressTransaction(address)
     // 多久检查一次
