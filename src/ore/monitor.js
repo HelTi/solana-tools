@@ -1,9 +1,9 @@
 
-const solanaWeb3 = require('@solana/web3.js');
-const dotenv = require('dotenv');
-const chalk = require('chalk');
-const { sendMail } = require('./send-email');
-const { solanaAddresses } = require('../../address');
+import solanaWeb3 from '@solana/web3.js';
+import dotenv from 'dotenv';
+import chalk from 'chalk';
+import { sendMail } from './send-email.js';
+import { solanaAddresses } from '../../address.js';
 
 
 

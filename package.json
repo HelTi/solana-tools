@@ -12,10 +12,15 @@
   ],
   "author": "",
   "license": "ISC",
+  "type": "module",
   "dependencies": {
     "@solana/web3.js": "^1.95.2",
     "chalk": "^4.1.2",
+    "cheerio": "^1.0.0",
     "dotenv": "^16.4.5",
+    "fs": "^0.0.1-security",
+    "mime-types": "^2.1.35",
+    "node-fetch": "^3.3.2",
     "nodemailer": "^6.9.14"
   }
 }
